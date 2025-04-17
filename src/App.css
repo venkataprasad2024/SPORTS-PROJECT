@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@keyframes shine {
+  0% {
+    box-shadow: 0 0 0px #3b82f6;
+  }
+  50% {
+    box-shadow: 0 0 15px 3px #3b82f6;
+  }
+  100% {
+    box-shadow: 0 0 0px #3b82f6;
+  }
+}
+
+.animate-shine {
+  animation: shine 1.5s infinite ease-in-out;
+}
+
+/* 
+
+ 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.animate-slide-up-fade {
+  animation: slideUpFade 0.4s ease-out;
+} */
