@@ -20,8 +20,8 @@ function App() {
     <Navbar />
     <TournamentIntro />
     <Home />
-    {/* <SportsCards /> */}
-    <Cricket />
+    <SportsCards />
+    {/* <Cricket /> */}
     <MatchesCountUp />
     {/* <Football />
     <Volleyball /> 

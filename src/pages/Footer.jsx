@@ -1,56 +1,43 @@
 import React from 'react';
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-blue-200 via-blue-100 to-blue-200 text-blue-900 pt-16 pb-10 mt-12 shadow-inner">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
-     
-        {/* Brand */}
+    <footer className="bg-blue-900 text-white py-16 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* Brand Info */}
         <div>
-          <h3 className="text-3xl font-extrabold mb-4 text-blue-800 tracking-tight">Sportify</h3>
-          <p className="text-base leading-relaxed text-blue-700">
-            Unite, Compete, Conquer. Experience elite tournaments in Cricket, Football, Volleyball, and Tennis.
+          <h3 className="text-3xl font-bold mb-4 text-white">Sports Tournament</h3>
+          <p className="text-blue-200 text-base leading-relaxed">
+            Bringing athletes together under one roof to celebrate passion, performance, and perseverance. 
+            Play hard, dream big, and win with honor.
           </p>
         </div>
 
-        {/* Quick Links */}
+        {/* Useful Links */}
         <div>
-          <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
-          <ul className="space-y-2 text-base">
-            <li><a href="#home" className="hover:text-blue-600 transition duration-300">🏠 Home</a></li>
-            <li><a href="#about" className="hover:text-blue-600 transition duration-300">ℹ️ About</a></li>
-            <li><a href="#sports" className="hover:text-blue-600 transition duration-300">🏅 Sports</a></li>
-            <li><a href="#contact" className="hover:text-blue-600 transition duration-300">✉️ Contact</a></li>
+          <h4 className="text-2xl font-semibold mb-4 text-white">Quick Links</h4>
+          <ul className="space-y-3 text-blue-200 text-base">
+            <li><a href="#home" className="hover:text-white transition">Home</a></li>
+            <li><a href="#register" className="hover:text-white transition">Register</a></li>
+            <li><a href="#sports" className="hover:text-white transition">Sports</a></li>
+            <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
           </ul>
         </div>
 
-        {/* Sports */}
+        {/* Contact Info */}
         <div>
-          <h4 className="text-xl font-semibold mb-4">Tournaments</h4>
-          <ul className="space-y-2 text-base">
-            <li><a href="/cricket" className="hover:text-orange-500 transition duration-300">🏏 Cricket</a></li>
-            <li><a href="/football" className="hover:text-green-600 transition duration-300">⚽ Football</a></li>
-            <li><a href="/volleyball" className="hover:text-pink-500 transition duration-300">🏐 Volleyball</a></li>
-            <li><a href="/tennis" className="hover:text-yellow-600 transition duration-300">🎾 Tennis</a></li>
-          </ul>
-        </div>
-
-        {/* Social Media */}
-        <div>
-          <h4 className="text-xl font-semibold mb-4">Follow Us</h4>
-          <div className="flex gap-5 text-2xl text-blue-700">
-            <a href="#" className="hover:text-blue-800 transition duration-300"><FaFacebookF /></a>
-            <a href="#" className="hover:text-pink-500 transition duration-300"><FaInstagram /></a>
-            <a href="#" className="hover:text-sky-500 transition duration-300"><FaTwitter /></a>
-            <a href="#" className="hover:text-red-600 transition duration-300"><FaYoutube /></a>
-          </div>
+          <h4 className="text-2xl font-semibold mb-4 text-white">Contact Us</h4>
+          <p className="text-blue-200 text-base leading-relaxed">
+            📍 Sports Complex Road, Arena City<br />
+            📧 info@sportstournament.com<br />
+            📞 +91 98765 43210
+          </p>
         </div>
       </div>
 
-      {/* Bottom line */}
-      <div className="mt-12 text-center text-md font-medium text-blue-800 border-t border-blue-300 pt-6 tracking-wide">
-        © {new Date().getFullYear()} <span className="font-bold">Sportify</span> — All Rights Reserved.
+      {/* Divider */}
+      <div className="border-t border-blue-700 mt-12 pt-6 text-center text-sm text-blue-300">
+        © {new Date().getFullYear()} Sports Tournament. All rights reserved.
       </div>
     </footer>
   );

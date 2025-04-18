@@ -27,7 +27,15 @@ const Navbar = () => {
         {/* Navbar */}
         <nav className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
           <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div className="text-2xl font-bold text-blue-600">Sportify</div>
+            {/* Logo and Title */}
+            <div className="flex items-center mx-0 space-x-2">
+              <img
+                className="h-10 w-10 object-contain"
+                src="public/Creative Football Sense PNG Images,  Football Clipart, Movement, Ball PNG Transparent Background - Pngtree.jpeg"
+                alt="logo"
+              />
+              <span className="text-2xl font-bold text-blue-600">Sportify</span>
+            </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-6">
@@ -51,7 +59,7 @@ const Navbar = () => {
                   Sports ▾
                 </button>
                 <div
-                  className={`absolute top-8 mt-0 w-40 bg-white shadow-lg rounded-md py-2  transition-all duration-300 transform ${
+                  className={`absolute top-8 mt-0 w-40 bg-white shadow-lg rounded-md py-2 transition-all duration-300 transform ${
                     dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
                   }`}
                 >
@@ -59,7 +67,7 @@ const Navbar = () => {
                     <a
                       key={sport}
                       href={`#${sport.toLowerCase()}`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:pl-5 transition-all duration-300 ease-in-out"
+                      className="block px-4 py-2 text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:pl-5 transition-all duration-300 ease-in-out"
                     >
                       {sport}
                     </a>
@@ -78,7 +86,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
-                className="text-4xl text-blue-600 focus:outline-none cursor-pointer"
+                className="text-4xl text-blue-600 focus:outline-none cursor-pointer transition-transform duration-300 hover:rotate-90"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 ☰
@@ -108,7 +116,7 @@ const Navbar = () => {
                       <a
                         key={sport}
                         href={`#${sport.toLowerCase()}`}
-                        className="block text-sm text-gray-700 hover:text-blue-600 hover:pl-3 transition-all duration-300"
+                        className="block text-base text-gray-700 hover:text-blue-600 hover:pl-3 transition-all duration-300"
                       >
                         {sport}
                       </a>
@@ -130,77 +138,71 @@ const Navbar = () => {
         </nav>
       </div>
 
-
+      {/* Modal */}
       {isModalOpen && (
-  <>
-    {/* BACKDROP */}
-    <div className="fixed inset-0 bg-opacity-30 backdrop-blur-sm z-40"></div>
-
-    {/* MODAL */}
-    <div className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300">
-      <div className="bg-white rounded-lg shadow-xl w-[90%] max-w-md p-6 animate-fade-in-up relative z-50">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800">Team Registration</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Team Name</label>
-            <input
-              type="text"
-              value={teamName}
-              onChange={(e) => setTeamName(e.target.value)}
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              placeholder="Enter your team name"
-            />
+        <>
+          <div className="fixed inset-0 bg-opacity-30 backdrop-blur-sm z-40"></div>
+          <div className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300">
+            <div className="bg-white rounded-lg shadow-xl w-[90%] max-w-md p-6 animate-fade-in-up relative z-50">
+              <h2 className="text-xl font-semibold mb-4 text-gray-800">Team Registration</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">Team Name</label>
+                  <input
+                    type="text"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    placeholder="Enter your team name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">Email</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    placeholder="team@email.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">Select Sport</label>
+                  <select
+                    value={selectedSport}
+                    onChange={(e) => setSelectedSport(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                  >
+                    <option value="" disabled>Select sport</option>
+                    <option value="Cricket">Cricket</option>
+                    <option value="Football">Football</option>
+                    <option value="Volleyball">Volleyball</option>
+                    <option value="Tennis">Tennis</option>
+                  </select>
+                </div>
+                <div className="flex justify-end space-x-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              placeholder="team@email.com"
-            />
-          </div>
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Select Sport</label>
-            <select
-              value={selectedSport}
-              onChange={(e) => setSelectedSport(e.target.value)}
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            >
-              <option value="" disabled>Select sport</option>
-              <option value="Cricket">Cricket</option>
-              <option value="Football">Football</option>
-              <option value="Volleyball">Volleyball</option>
-              <option value="Tennis">Tennis</option>
-            </select>
-          </div>
-          <div className="flex justify-end space-x-2 pt-2">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </>
-)}
-
-
-   
+        </>
+      )}
 
       {/* Toast */}
       {showToast && (
