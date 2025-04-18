@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-blue-200 via-blue-100 to-blue-200 text-blue-900 pt-16 pb-10 mt-12 shadow-inner">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
-        this is footer
+     
         {/* Brand */}
         <div>
           <h3 className="text-3xl font-extrabold mb-4 text-blue-800 tracking-tight">Sportify</h3>
