@@ -12,20 +12,24 @@ import SportsCards from './pages/SportsCards'
  import Volleyball from './pages/Volleyball'
 import Tennis from './pages/Tennis'
 import MatchesCountUp from './pages/MatchesCountUp'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HomeData from './pages/HomeData'
 function App() {
  
   return (
     <>
-     
-    <Navbar />
-    <TournamentIntro />
-    <Home />
-    <SportsCards />
-    {/* <Cricket /> */}
-    <MatchesCountUp />
-    {/* <Football />
-    <Volleyball /> 
-<Tennis />   */}
-  <Footer /> 
+     <BrowserRouter>
+     <Routes>
+
+    <Route path="/" element={<Home/>}>
+       <Route path="/" element={<HomeData />} />
+       <Route path="/cricket" element={<Cricket />} />
+       <Route path="/football" element={<Football />} />
+       <Route path="/volleyball" element={<Volleyball />} />
+       <Route path="/tennis" element={<Tennis />} />
+       </Route>
+        </Routes>
+     </BrowserRouter>
+  
       </>)}
   export default App;

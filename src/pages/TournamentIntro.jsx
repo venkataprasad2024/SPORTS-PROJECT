@@ -34,6 +34,7 @@ const TournamentIntro = () => {
   }, []);
 
   return (
+
     <section
       id="sec"
       ref={sectionRef}

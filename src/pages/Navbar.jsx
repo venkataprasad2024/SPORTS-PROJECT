@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,11 +25,10 @@ const Navbar = () => {
   return (
     <>
       <div className={`${isModalOpen ? 'blur-sm pointer-events-none select-none' : ''} transition-all duration-300`}>
-        {/* Navbar */}
         <nav className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
           <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             {/* Logo and Title */}
-            <div className="flex items-center space-x-2 ml-4">
+            <div className="flex items-center space-x-2 ml-1">
               <img
                 className="h-10 w-10 object-contain"
                 src="public/Creative Football Sense PNG Images,  Football Clipart, Movement, Ball PNG Transparent Background - Pngtree.jpeg"
@@ -40,13 +40,13 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-6">
               {['Home', 'About', 'Contact'].map((item) => (
-                <a
+                <Link
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  to={`/`}
                   className="text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300 ease-in-out hover:scale-105"
                 >
                   {item}
-                </a>
+                </Link>
               ))}
 
               {/* Dropdown */}
@@ -64,13 +64,13 @@ const Navbar = () => {
                   }`}
                 >
                   {['Cricket', 'Football', 'Volleyball', 'Tennis'].map((sport) => (
-                    <a
+                    <Link
                       key={sport}
-                      href={`#${sport.toLowerCase()}`}
+                      to={`/${sport.toLowerCase()}`}
                       className="block px-4 py-2 text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:pl-5 transition-all duration-300 ease-in-out"
                     >
                       {sport}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -98,13 +98,13 @@ const Navbar = () => {
           {mobileMenuOpen && (
             <div className="md:hidden px-4 pb-4 space-y-3">
               {['Home', 'About', 'Contact'].map((item) => (
-                <a
+                <Link
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  to={`/`}
                   className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300 hover:scale-105"
                 >
                   {item}
-                </a>
+                </Link>
               ))}
               <div>
                 <details className="group">
@@ -113,13 +113,13 @@ const Navbar = () => {
                   </summary>
                   <div className="pl-4 mt-2 space-y-1">
                     {['Cricket', 'Football', 'Volleyball', 'Tennis'].map((sport) => (
-                      <a
+                      <Link
                         key={sport}
-                        href={`#${sport.toLowerCase()}`}
+                        to={`/${sport.toLowerCase()}`}
                         className="block text-base text-gray-700 hover:text-blue-600 hover:pl-3 transition-all duration-300"
                       >
                         {sport}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </details>
@@ -129,7 +129,7 @@ const Navbar = () => {
                   setIsModalOpen(true);
                   setMobileMenuOpen(false);
                 }}
-                className="w-full text-left text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition text-lg font-semibold"
+                className="w-full text-left text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition text-lg font-semibold cursor-pointer"
               >
                 Register Team
               </button>
