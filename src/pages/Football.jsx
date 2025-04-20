@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import RegisterModal from './RegisterModal';
-
+import OngoingMatchesInfo from './OngoingMatchesInfo';
 const Football = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [email, setEmail] = useState('');
   const [selectedSport, setSelectedSport] = useState('Football'); // Default to Football
-
+  const footballMatches = [
+    { team1: 'Barcelona', team2: 'Real Madrid', date: 'April 21, 2025', time: '5:30 PM' },
+    { team1: 'Man City', team2: 'Liverpool', date: 'April 21, 2025', time: '8:00 PM' },
+  ];
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setTimeout(() => {
@@ -60,6 +64,8 @@ const Football = () => {
         selectedSport={selectedSport}
         setSelectedSport={setSelectedSport}
       />
+      <OngoingMatchesInfo sport="Football" matches={footballMatches} />
+
     </>
   );
 };

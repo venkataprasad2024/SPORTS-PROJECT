@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RegisterModal from './RegisterModal';
-
+import OngoingMatchesInfo from './OngoingMatchesInfo';
 const Tennis = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
@@ -59,6 +59,7 @@ const Tennis = () => {
         selectedSport={selectedSport}
         setSelectedSport={setSelectedSport}
       />
+      <OngoingMatchesInfo sport="Tennis" />
     </>
   );
 };

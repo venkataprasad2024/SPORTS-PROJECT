@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import RegisterModal from './RegisterModal';
+import OngoingMatchesInfo from './OngoingMatchesInfo';
+
+const cricketMatches = [
+  { team1: 'India', team2: 'Australia', date: 'April 21, 2025', time: '3:00 PM' },
+  { team1: 'England', team2: 'Pakistan', date: 'April 21, 2025', time: '7:00 PM' },
+];
+
+
 
 const Cricket = () => {
   const sectionRef = useRef(null);
@@ -83,6 +91,7 @@ const Cricket = () => {
         selectedSport={selectedSport}
         setSelectedSport={setSelectedSport}
       />
+      <OngoingMatchesInfo sport="Cricket" matches={cricketMatches} />
     </>
   );
 };
