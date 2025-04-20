@@ -28,7 +28,7 @@ const Navbar = () => {
         <nav className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
           <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             {/* Logo and Title */}
-            <div className="flex items-center mx-0 space-x-2">
+            <div className="flex items-center space-x-2 ml-4">
               <img
                 className="h-10 w-10 object-contain"
                 src="public/Creative Football Sense PNG Images,  Football Clipart, Movement, Ball PNG Transparent Background - Pngtree.jpeg"
@@ -86,7 +86,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
-                className="text-4xl text-blue-600 focus:outline-none cursor-pointer transition-transform duration-300 hover:rotate-90"
+                className="text-4xl text-blue-600 focus:outline-none cursor-pointer"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 ☰
