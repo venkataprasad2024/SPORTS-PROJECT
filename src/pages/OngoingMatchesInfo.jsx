@@ -42,7 +42,7 @@ const OngoingMatchesInfo = ({ sport }) => {
   const icon = iconMap[sport] || <FaFutbol size={20} />;
 
   return (
-    <div className="w-full px-6 py-10 bg-gray-100 mt-8 rounded-lg shadow-lg">
+    <div className="w-full px-6 py-10 bg-gray-100 rounded-lg shadow-lg">
       <div className="text-center mb-6">
         <button
           onClick={() => setShowMatches(!showMatches)}

@@ -26,15 +26,15 @@ const Navbar = () => {
     <>
       <div className={`${isModalOpen ? 'blur-sm pointer-events-none select-none' : ''} transition-all duration-300`}>
         <nav className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="max-w-7xl  px-4 py-4 flex justify-between items-center">
             {/* Logo and Title */}
-            <div className="flex items-center space-x-2 ml-1">
+            <div className="flex items-center space-x-2 ">
               <img
                 className="h-10 w-10 object-contain"
-                src="public/Creative Football Sense PNG Images,  Football Clipart, Movement, Ball PNG Transparent Background - Pngtree.jpeg"
+                src="public/Ilustração De Bola De Futebol De Chama Azul Para Designs Esportivos E Com Tema De Futebol PNG , Bola De Futebol De Chama Azul, Bola De Futebol Pegando Fogo, Blue Fire Football PNG Imagem para download gratuito.jpeg"
                 alt="logo"
               />
-              <span className="text-2xl font-bold text-blue-600">Sportify</span>
+              <span className="text-2xl font-bold text-blue-600 -ml-2">Sportify</span>
             </div>
 
             {/* Desktop Menu */}
@@ -43,7 +43,7 @@ const Navbar = () => {
                 <Link
                   key={item}
                   to={`/`}
-                  className="text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300 ease-in-out hover:scale-105"
+                  className="text-lg font-semibold text-gray-700 hover:text-blue-600 hover: transition-all duration-300 ease-in-out hover:scale-105"
                 >
                   {item}
                 </Link>
