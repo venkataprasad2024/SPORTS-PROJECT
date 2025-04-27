@@ -172,7 +172,7 @@ const Navbar = () => {
                     setIsAuthModalOpen(true);
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
+                  className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold cursor-pointer"
                 >
                   Login / Signup
                 </button>

@@ -79,7 +79,7 @@ const HomeData = () => {
             </p>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded transition"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded transition cursor-pointer"
             >
               Register Your Team
             </button>
