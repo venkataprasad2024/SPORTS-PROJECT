@@ -1,52 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoginSignup from './LoginSignup';
+import RegisterModal from './RegisterModal'; // ✅ Corrected import
 
 const Navbar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Register Team Modal
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false); // Login/Signup Modal
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login status
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [teamName, setTeamName] = useState('');
-  const [email, setEmail] = useState('');
-  const [selectedSport, setSelectedSport] = useState('');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-      setIsModalOpen(false);
-      setTeamName('');
-      setEmail('');
-      setSelectedSport('');
-    }, 2000);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setIsAuthModalOpen(true); // Show the login modal after logging out
-  };
+  const isAnyModalOpen = isModalOpen || isAuthModalOpen;
 
   return (
     <>
-      {/* Blur when any modal is open */}
-      <div className={`${(isModalOpen || isAuthModalOpen) ? 'bg-black bg-opacity-50 backdrop-blur-sm pointer-events-none select-none' : ''} transition-all duration-300`}>
-        <nav className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
-          <div className="max-w-7xl px-4 py-4 flex justify-between items-center">
+      <div className={`${isAnyModalOpen ? 'backdrop-blur-sm' : ''} transition-all duration-300`}>
+        <nav className="bg-white shadow-md sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             {/* Logo */}
             <div className="flex items-center space-x-2">
               <img
                 className="h-10 w-10 object-contain"
-                src="public/Ilustração De Bola De Futebol De Chama Azul Para Designs Esportivos E Com Tema De Futebol PNG , Bola De Futebol De Chama Azul, Bola De Futebol Pegando Fogo, Blue Fire Football PNG Imagem para download gratuito.jpeg"
+                src="public/ logo.jpeg"
                 alt="logo"
               />
               <span className="text-2xl font-bold text-blue-600 -ml-2">Sportify</span>
             </div>
 
-            {/* Desktop Menu */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
               {['Home', 'About', 'Contact'].map((item) => (
                 <Link
@@ -58,25 +39,24 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
-              >
-                <button className="text-lg font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-105">
-                  Sports ▾
+              {/* Sports Dropdown with smooth transition */}
+              <div className="relative group">
+                <button className="flex items-center text-lg font-semibold text-gray-700 hover:text-blue-600 transition duration-300">
+                  Sports
+                  <svg
+                    className="ml-1 h-4 w-4 transform group-hover:rotate-180 transition duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z" />
+                  </svg>
                 </button>
-                <div
-                  className={`absolute top-8 mt-0 w-40 bg-white shadow-lg rounded-md py-2 transition-all duration-300 transform ${
-                    dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-                  }`}
-                >
+                <div className="absolute top-10 left-0 w-40 bg-white shadow-lg rounded-md py-2 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-300 z-50">
                   {['Cricket', 'Football', 'Volleyball', 'Tennis'].map((sport) => (
                     <Link
                       key={sport}
                       to={`/${sport.toLowerCase()}`}
-                      className="block px-4 py-2 text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:pl-5"
+                      className="block px-4 py-2 text-base text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300"
                     >
                       {sport}
                     </Link>
@@ -84,35 +64,36 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Conditionally show Register Team only if logged in */}
-              {isLoggedIn && (
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-lg font-semibold"
-                >
-                  Register Team
-                </button>
-              )}
-
-              {/* Login/Signup Button */}
-              {!isLoggedIn ? (
+              {/* Auth and Registration Buttons */}
+              {isLoggedIn ? (
+                <>
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-lg font-semibold"
+                  >
+                    Register Team
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsLoggedIn(false);
+                      setIsAuthModalOpen(true);
+                    }}
+                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition text-lg font-semibold"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
                 <button
                   onClick={() => setIsAuthModalOpen(true)}
                   className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
                 >
                   Login / Signup
                 </button>
-              ) : (
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition text-lg font-semibold"
-                >
-                  Logout
-                </button>
               )}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Hamburger */}
             <div className="md:hidden">
               <button
                 className="text-4xl text-blue-600"
@@ -130,12 +111,11 @@ const Navbar = () => {
                 <Link
                   key={item}
                   to="/"
-                  className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline underline-offset-4"
+                  className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline"
                 >
                   {item}
                 </Link>
               ))}
-              {/* Sports */}
               <div>
                 <details className="group">
                   <summary className="cursor-pointer text-lg font-semibold text-gray-700 hover:text-blue-600">
@@ -155,7 +135,6 @@ const Navbar = () => {
                 </details>
               </div>
 
-              {/* Conditional Buttons */}
               {isLoggedIn ? (
                 <button
                   onClick={() => {
@@ -172,7 +151,7 @@ const Navbar = () => {
                     setIsAuthModalOpen(true);
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold cursor-pointer"
+                  className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
                 >
                   Login / Signup
                 </button>
@@ -184,64 +163,22 @@ const Navbar = () => {
 
       {/* Modals */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-            <h2 className="text-xl font-semibold mb-4">Register Your Team</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label htmlFor="teamName" className="block text-gray-700">Team Name</label>
-                <input
-                  id="teamName"
-                  type="text"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
-                  required
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="sport" className="block text-gray-700">Select Sport</label>
-                <select
-                  id="sport"
-                  value={selectedSport}
-                  onChange={(e) => setSelectedSport(e.target.value)}
-                  required
-                  className="w-full p-2 border border-gray-300 rounded"
-                >
-                  <option value="">Select Sport</option>
-                  <option value="Cricket">Cricket</option>
-                  <option value="Football">Football</option>
-                  <option value="Volleyball">Volleyball</option>
-                  <option value="Tennis">Tennis</option>
-                </select>
-              </div>
-              <div className="flex justify-between">
-                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                  Submit
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="text-gray-600 hover:text-gray-800"
-                >
-                  Close
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <RegisterModal
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+          handleSubmit={() => {
+            alert('✅ Registration Successful!');
+            setIsModalOpen(false);
+          }}
+          teamName=""
+          setTeamName={() => {}}
+          email=""
+          setEmail={() => {}}
+          selectedSport="Cricket"
+          setSelectedSport={() => {}}
+        />
       )}
+
       {isAuthModalOpen && (
         <LoginSignup
           closeModal={() => setIsAuthModalOpen(false)}
