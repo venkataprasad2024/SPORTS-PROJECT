@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import LoginSignup from './LoginSignup';
-import RegisterModal from './RegisterModal'; // ✅ Corrected import
+import RegisterModal from './RegisterModal';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ homeRef, footerRef }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,17 +29,24 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
-              {['Home', 'About', 'Contact'].map((item) => (
-                <Link
-                  key={item}
-                  to="/"
-                  className="text-lg font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-105"
-                >
-                  {item}
-                </Link>
-              ))}
+              {/* Scroll buttons */}
+              <Link to="/" className="text-lg font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-105">
+                Home
+              </Link>
+              <button
+                onClick={() => homeRef?.current?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-lg font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-105"
+              >
+                About
+              </button>
+              <button
+                onClick={() => footerRef?.current?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-lg font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-105"
+              >
+                Contact
+              </button>
 
-              {/* Sports Dropdown with smooth transition */}
+              {/* Sports Dropdown */}
               <div className="relative group">
                 <button className="flex items-center text-lg font-semibold text-gray-700 hover:text-blue-600 transition duration-300">
                   Sports
@@ -64,7 +71,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Auth and Registration Buttons */}
+              {/* Auth & Registration */}
               {isLoggedIn ? (
                 <>
                   <button
@@ -107,33 +114,46 @@ const Navbar = () => {
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="md:hidden px-4 pb-4 space-y-3">
-              {['Home', 'About', 'Contact'].map((item) => (
-                <Link
-                  key={item}
-                  to="/"
-                  className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline"
-                >
-                  {item}
-                </Link>
-              ))}
-              <div>
-                <details className="group">
-                  <summary className="cursor-pointer text-lg font-semibold text-gray-700 hover:text-blue-600">
-                    Sports
-                  </summary>
-                  <div className="pl-4 mt-2 space-y-1">
-                    {['Cricket', 'Football', 'Volleyball', 'Tennis'].map((sport) => (
-                      <Link
-                        key={sport}
-                        to={`/${sport.toLowerCase()}`}
-                        className="block text-base text-gray-700 hover:text-blue-600 hover:pl-3 transition-all duration-300"
-                      >
-                        {sport}
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              </div>
+              <Link
+                to="/"
+                className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline"
+              >
+                Home
+              </Link>
+              <button
+                onClick={() => {
+                  homeRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline"
+              >
+                About
+              </button>
+              <button
+                onClick={() => {
+                  footerRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="block text-lg font-semibold text-gray-700 hover:text-blue-600 hover:underline"
+              >
+                Contact
+              </button>
+              <details className="group">
+                <summary className="cursor-pointer text-lg font-semibold text-gray-700 hover:text-blue-600">
+                  Sports
+                </summary>
+                <div className="pl-4 mt-2 space-y-1">
+                  {['Cricket', 'Football', 'Volleyball', 'Tennis'].map((sport) => (
+                    <Link
+                      key={sport}
+                      to={`/${sport.toLowerCase()}`}
+                      className="block text-base text-gray-700 hover:text-blue-600 hover:pl-3 transition-all duration-300"
+                    >
+                      {sport}
+                    </Link>
+                  ))}
+                </div>
+              </details>
 
               {isLoggedIn ? (
                 <button
