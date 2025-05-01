@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Home from './pages/Home'
-import './App.css'
-import Footer from './pages/Footer'
-import Navbar from './pages/Navbar'
-import TournamentIntro from './pages/TournamentIntro'
-import SportsCards from './pages/SportsCards'
- import Cricket from './pages/Cricket'
- import Football from './pages/Football'
- import Volleyball from './pages/Volleyball'
-import Tennis from './pages/Tennis'
-import MatchesCountUp from './pages/MatchesCountUp'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import HomeData from './pages/HomeData'
+import { useRef } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+
+import Navbar from './pages/Navbar';
+import Footer from './pages/Footer';
+import HomeData from './pages/HomeData';
+import Cricket from './pages/Cricket';
+import Football from './pages/Football';
+import Volleyball from './pages/Volleyball';
+import Tennis from './pages/Tennis';
+
 function App() {
- 
+  const homeRef = useRef(null);
+  const footerRef = useRef(null);
+
   return (
     <>
-     <BrowserRouter>
-     <Routes>
+      <BrowserRouter>
+        {/* Always visible */}
+        <Navbar homeRef={homeRef} footerRef={footerRef} />
 
-    <Route path="/" element={<Home/>}>
-       <Route path="/" element={<HomeData />} />
-       <Route path="/cricket" element={<Cricket />} />
-       <Route path="/football" element={<Football />} />
-       <Route path="/volleyball" element={<Volleyball />} />
-       <Route path="/tennis" element={<Tennis />} />
-       </Route>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div ref={homeRef}>
+                  <HomeData />
+                </div>
+                {/* You can include TournamentIntro or SportsCards here if needed */}
+                <div ref={footerRef}>
+                  <Footer />
+                </div>
+              </>
+            }
+          />
+          <Route path="/cricket" element={<Cricket />} />
+          <Route path="/football" element={<Football />} />
+          <Route path="/volleyball" element={<Volleyball />} />
+          <Route path="/tennis" element={<Tennis />} />
         </Routes>
-     </BrowserRouter>
-  
-      </>)}
-  export default App;
+      </BrowserRouter>
+    </>
+  );
+}
+
+export default App;

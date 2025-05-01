@@ -4,6 +4,7 @@ import { FaFutbol, FaVolleyballBall, FaTableTennis, FaBaseballBall } from 'react
 const OngoingMatchesInfo = ({ sport }) => {
   const [showMatches, setShowMatches] = useState(false);
 
+  // Matches data for each sport
   const matchesData = {
     Football: [
       { teams: 'Lions FC vs Hawks FC', time: '10:00 AM' },
@@ -31,6 +32,7 @@ const OngoingMatchesInfo = ({ sport }) => {
     ],
   };
 
+  // Icon mapping for each sport
   const iconMap = {
     Football: <FaFutbol size={20} />,
     Cricket: <FaBaseballBall size={20} />,
@@ -38,12 +40,14 @@ const OngoingMatchesInfo = ({ sport }) => {
     Volleyball: <FaVolleyballBall size={20} />,
   };
 
+  // Get the sport's matches and icon
   const matches = matchesData[sport] || [];
   const icon = iconMap[sport] || <FaFutbol size={20} />;
 
   return (
     <div className="w-full px-6 py-10 bg-gray-100 rounded-lg shadow-lg">
       <div className="text-center mb-6">
+        {/* Toggle Button to Show/Hide Ongoing Matches */}
         <button
           onClick={() => setShowMatches(!showMatches)}
           className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 py-3 rounded-full flex items-center gap-2 mx-auto transition duration-300 shadow-md"
@@ -53,6 +57,7 @@ const OngoingMatchesInfo = ({ sport }) => {
         </button>
       </div>
 
+      {/* Display Ongoing Matches if toggle is enabled */}
       {showMatches && (
         <div className="grid md:grid-cols-2 gap-6">
           {matches.map((match, index) => (
