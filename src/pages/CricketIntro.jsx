@@ -38,9 +38,9 @@ const CricketIntro = () => {
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}
       >
-        <div className="flex justify-center mb-6">
+        {/* <div className="flex justify-center mb-6">
           <FaTrophy className="text-yellow-400 text-5xl drop-shadow-xl animate-pulse" />
-        </div>
+        </div> */}
 
         <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-6 drop-shadow-lg">
           ICC Inter-College Cricket Championship 2025
