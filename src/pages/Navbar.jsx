@@ -33,11 +33,12 @@ const Navbar = ({ homeRef, footerRef }) => {
 
   return (
     <>
-      <div className={`${isAnyModalOpen ? 'backdrop-blur-sm' : ''} transition-all duration-300`}>
-        <nav className="bg-black bg-cover h-180 w-full shadow-md sticky top-0 z-50"
-         style={{
-          backgroundImage: "url('/athletes-1867185_1280.jpg')",
-        }}>
+      <div className={`${isAnyModalOpen ? 'backdrop-blur-sm' : ''} transition-all duration-300 `}
+    >
+        <nav className=" h-180 bg-cover  w-full  sticky top-0 z-50"
+          style={{
+            backgroundImage: "url('/athletes-1867185_1280.jpg')",
+          }} >
           <div className="max-w-7xl mx-auto ml-3 px-4 py-4 flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <img
@@ -48,7 +49,7 @@ const Navbar = ({ homeRef, footerRef }) => {
               <span className="text-2xl font-bold text-green-600 -ml-2">Sportify</span>
             </div>
 
-            <div className="hidden md:flex items-center space-x-6 ml-10">
+            <div className="hidden md:flex items-center space-x-6 ">
               <Link to="/" className="text-lg font-semibold text-white hover:text-green-600">Home</Link>
               <button
                 onClick={() => homeRef?.current?.scrollIntoView({ behavior: 'smooth' })}
@@ -87,7 +88,7 @@ const Navbar = ({ homeRef, footerRef }) => {
                 <>
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold "
                   >
                     Register Team
                   </button>
