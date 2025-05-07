@@ -33,9 +33,9 @@ const Navbar = ({ homeRef, footerRef }) => {
 
   return (
     <>
-      <div className={`${isAnyModalOpen ? 'backdrop-blur-sm' : ''} transition-all duration-300 `}
+      <div className={`${isAnyModalOpen ? 'bg-blackbackdrop-blur-sm' : ''} transition-all duration-300 `}
     >
-        <nav className=" h-180 bg-cover  w-full  sticky top-0 z-50"
+        <nav className=" h-180 bg-cover   w-full  sticky top-0 z-50"
           style={{
             backgroundImage: "url('/athletes-1867185_1280.jpg')",
           }} >
