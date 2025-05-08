@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import LoginSignup from './LoginSignup';
 import RegisterModal from './RegisterModal';
-import { Link } from 'react-router-dom';
 
 const Navbar = ({ homeRef, footerRef }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,11 +9,19 @@ const Navbar = ({ homeRef, footerRef }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Input states for RegisterModal
   const [teamName, setTeamName] = useState('');
   const [email, setEmail] = useState('');
   const [selectedSport, setSelectedSport] = useState('Cricket');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleRegisterSubmit = () => {
     if (teamName && email) {
@@ -33,13 +41,16 @@ const Navbar = ({ homeRef, footerRef }) => {
 
   return (
     <>
-      <div className={`${isAnyModalOpen ? 'bg-blackbackdrop-blur-sm' : ''} transition-all duration-300 `}
-    >
-        <nav className=" h-180 bg-cover   w-full  sticky top-0 z-50"
-          style={{
-            backgroundImage: "url('/athletes-1867185_1280.jpg')",
-          }} >
-          <div className="max-w-7xl mx-auto ml-3 px-4 py-4 flex justify-between items-center">
+      <div className={`w-full sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black bg-opacity-90 shadow-lg' : ''}`}>
+      <nav
+  className="w-full bg-cover bg-center transition-all duration-300"
+  style={{
+    backgroundImage: !scrolled ? "url('/athletes-1867185_1280.jpg')" : 'none',
+    height: !scrolled ? '700px' : 'auto',
+  }}
+>
+
+          <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <img
                 className="h-10 w-10 object-contain"
@@ -49,34 +60,34 @@ const Navbar = ({ homeRef, footerRef }) => {
               <span className="text-2xl font-bold text-green-600 -ml-2">Sportify</span>
             </div>
 
-            <div className="hidden md:flex items-center space-x-6 ">
+            <div className="hidden md:flex items-center space-x-6">
               <Link to="/" className="text-lg font-semibold text-white hover:text-green-600">Home</Link>
               <button
                 onClick={() => homeRef?.current?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-lg font-semibold text-white hover:text-green-600 transition-all duration-300 hover:scale-105"
+                className="text-lg font-semibold text-white hover:text-green-600"
               >
                 About
               </button>
               <button
                 onClick={() => footerRef?.current?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-lg font-semibold text-white hover:text-green-600 transition-all duration-300 hover:scale-105"
+                className="text-lg font-semibold text-white hover:text-green-600"
               >
                 Contact
               </button>
 
               <div className="relative group">
-                <button className="flex items-center text-lg font-semibold text-white hover:text-green-600 transition duration-300">
+                <button className="flex items-center text-lg font-semibold text-white hover:text-green-600">
                   Sports
-                  <svg className="ml-1 h-4 w-4 transform group-hover:rotate-180 transition duration-300" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z" />
                   </svg>
                 </button>
-                <div className="absolute top-10 left-0 w-40 bg-white shadow-lg rounded-md py-2 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-300 z-50">
+                <div className="absolute top-10 left-0 w-40 bg-white rounded-md py-2 shadow-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-50">
                   {['Cricket', 'Football', 'Volleyball', 'Tennis'].map((sport) => (
                     <Link
                       key={sport}
                       to={`/${sport.toLowerCase()}`}
-                      className="block px-4 py-2 text-base text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all duration-300"
+                      className="block px-4 py-2 text-base text-gray-700 hover:bg-green-50 hover:text-green-600"
                     >
                       {sport}
                     </Link>
@@ -88,7 +99,7 @@ const Navbar = ({ homeRef, footerRef }) => {
                 <>
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold "
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-lg font-semibold"
                   >
                     Register Team
                   </button>
@@ -97,7 +108,7 @@ const Navbar = ({ homeRef, footerRef }) => {
                       setIsLoggedIn(false);
                       setIsAuthModalOpen(true);
                     }}
-                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition text-lg font-semibold"
+                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-lg font-semibold"
                   >
                     Logout
                   </button>
@@ -105,7 +116,7 @@ const Navbar = ({ homeRef, footerRef }) => {
               ) : (
                 <button
                   onClick={() => setIsAuthModalOpen(true)}
-                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
+                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-lg font-semibold"
                 >
                   Login / Signup
                 </button>
@@ -126,13 +137,13 @@ const Navbar = ({ homeRef, footerRef }) => {
 
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-3">
-          <Link to="/" className="block text-lg font-semibold text-gray-700 hover:text-green-600 hover:underline">Home</Link>
+          <Link to="/" className="block text-lg font-semibold text-gray-700 hover:text-green-600">Home</Link>
           <button
             onClick={() => {
               homeRef?.current?.scrollIntoView({ behavior: 'smooth' });
               setMobileMenuOpen(false);
             }}
-            className="block text-lg font-semibold text-gray-700 hover:text-green-600 hover:underline"
+            className="block text-lg font-semibold text-gray-700 hover:text-green-600"
           >
             About
           </button>
@@ -141,7 +152,7 @@ const Navbar = ({ homeRef, footerRef }) => {
               footerRef?.current?.scrollIntoView({ behavior: 'smooth' });
               setMobileMenuOpen(false);
             }}
-            className="block text-lg font-semibold text-gray-700 hover:text-green-600 hover:underline"
+            className="block text-lg font-semibold text-gray-700 hover:text-green-600"
           >
             Contact
           </button>
@@ -152,7 +163,7 @@ const Navbar = ({ homeRef, footerRef }) => {
                 <Link
                   key={sport}
                   to={`/${sport.toLowerCase()}`}
-                  className="block text-base text-gray-700 hover:text-green-600 hover:pl-3 transition-all duration-300"
+                  className="block text-base text-gray-700 hover:text-green-600"
                 >
                   {sport}
                 </Link>
@@ -166,7 +177,7 @@ const Navbar = ({ homeRef, footerRef }) => {
                 setIsModalOpen(true);
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
+              className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 text-lg font-semibold"
             >
               Register Team
             </button>
@@ -176,7 +187,7 @@ const Navbar = ({ homeRef, footerRef }) => {
                 setIsAuthModalOpen(true);
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition text-lg font-semibold"
+              className="w-full text-white bg-green-600 px-4 py-2 rounded hover:bg-green-700 text-lg font-semibold"
             >
               Login / Signup
             </button>
