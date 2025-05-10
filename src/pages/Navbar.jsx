@@ -41,7 +41,7 @@ const Navbar = ({ homeRef, footerRef }) => {
 
   return (
     <>
-      <div className={`w-full sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black bg-opacity-90 shadow-lg' : ''}`}>
+      <div className={`w-full sticky top-0 z-50  }`}>
       <nav
   className="w-full bg-cover bg-center transition-all duration-300"
   style={{
