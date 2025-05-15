@@ -44,10 +44,10 @@ const Navbar = ({ homeRef, footerRef }) => {
       <div className={`w-full sticky top-0 z-50   }`}>
       <nav
   className="w-full bg-cover bg-center transition-all duration-300"
-  // style={{
-  //   backgroundImage: !scrolled ? "url('/athletes-1867185_1280.jpg')" : 'none',
-  //   height: !scrolled ? '700px' : 'auto',
-  // }}
+  style={{
+    backgroundImage: !scrolled ? "url('/athletes-1867185_1280.jpg')" : 'none',
+    height: !scrolled ? '700px' : 'auto',
+  }}
 >
 
           <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
